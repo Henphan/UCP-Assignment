@@ -2,6 +2,7 @@
 #include "interface.h"
 #include "input.h"
 #include "movement.h"
+#include "endGame.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -30,7 +31,9 @@ int main(int argc, char* argv[]){
             system("clear");
             movePlayer(mapData, mapDimensions, ch);
             displayMap(mapData, mapDimensions);
-            
+            if(isFinished(mapData, mapDimensions)){
+                stop = 1;
+            }
         }
 
         freeMapData(&mapData, &mapDimensions);

@@ -64,7 +64,7 @@ int isValidGrid(int** mapData, int* mapDimensions, int x, int y){
         isValid = 0;
     }
     /* not empty space */
-    else if(mapData[x][y] != 0 && mapData[x][y] != 4){
+    else if(mapData[x][y] != 0 && mapData[x][y] != 4 && mapData[x][y] != 6){
         isValid = 0;
     }
     return isValid;
