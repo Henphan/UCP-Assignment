@@ -1,23 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void getMapDimension(char* mapName, int* dimensions){
-    FILE* mapFile = fopen(mapName, "r");
-
-    if(mapFile != NULL){
-        fscanf(mapFile, "%d %d", &dimensions[0], &dimensions[1]); /* reading the matrix dimensions */
-    }
-    fclose(mapFile);
-}
-
-void processMapFile(char* mapName,int*** mapData, int row, int col){
+void processMapFile(char* mapName,int*** mapData, int** dimensions){
     FILE* mapFile = fopen(mapName, "r");
     int i, j;
 
     int val;
+    int row, col;
 
     if(mapFile != NULL){    
-        fscanf(mapFile, "%d %d", &row, &col);
+        *dimensions = (int*)malloc(sizeof(int) * 2);
+
+        fscanf(mapFile, "%d %d", &row, &col); /* assigning the dimension array */
+        (*dimensions)[0] = row;
+        (*dimensions)[1] = col;
+
         *mapData = (int**)malloc(sizeof(int*) * row); /* mallocing the matrix */
         for(i = 0; i < row; i++){
             (*mapData)[i] = (int*)malloc(sizeof(int) * col); 
@@ -28,14 +25,6 @@ void processMapFile(char* mapName,int*** mapData, int row, int col){
                 (*mapData)[i][j] = val;
             }
         }
-        
-        /*for(i = 0; i < row; i++){
-            for(j = 0; j < col; j++){
-                printf("%d ", (*mapData)[i][j]);
-            }
-            printf("\n");
-        }*/
-
     fclose(mapFile);
     }
     else{

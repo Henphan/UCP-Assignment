@@ -5,8 +5,9 @@
 int main(int argc, char* argv[]){
     char* mapName = NULL;
     int** mapData = NULL;
+    int* mapDimensions = NULL;
     int row, col;
-    int dimensions[2];
+    
 
     int i, j;
     if(argc != 2){
@@ -16,15 +17,12 @@ int main(int argc, char* argv[]){
     else{
         mapName = argv[1];
 
-        getMapDimension(mapName, dimensions);
-        row = dimensions[0];
-        col = dimensions[1];
+        processMapFile(mapName, &mapData, &mapDimensions);
+        row = mapDimensions[0];
+        col = mapDimensions[1];
 
-        processMapFile(mapName, &mapData, row, col);
-
-
-        for(i = 0; i < dimensions[0]; i++){
-            for(j = 0; j < dimensions[1]; j++){
+        for(i = 0; i < row; i++){
+            for(j = 0; j < col; j++){
                 printf("%d ", mapData[i][j]);
             }
             printf("\n");
