@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "movement.h"
+#include "trapdoor.h"
 
 void movePlayer(int** mapData, int* mapDimensions, char actionChar){
     int currX, currY;
@@ -18,24 +19,36 @@ void movePlayer(int** mapData, int* mapDimensions, char actionChar){
     case 'w':
         if(isValidGrid(mapData, mapDimensions, currX-1, currY)){
             mapData[currX][currY] = 0;
+            if(mapData[currX-1][currY] == 4){
+                activateTrapdoor(mapData, mapDimensions);
+            }
             mapData[currX-1][currY] = 5;
         }
         break;
     case 'a':
         if(isValidGrid(mapData, mapDimensions, currX, currY-1)){
             mapData[currX][currY] = 0;
+            if(mapData[currX][currY-1] == 4){
+                activateTrapdoor(mapData, mapDimensions);
+            }
             mapData[currX][currY-1] = 5;
         }
         break;
     case 's':
         if(isValidGrid(mapData, mapDimensions, currX+1, currY)){
             mapData[currX][currY] = 0;
+            if(mapData[currX+1][currY] == 4) {
+                activateTrapdoor(mapData, mapDimensions);
+            }
             mapData[currX+1][currY] = 5;
         }
         break;
     case 'd':
         if(isValidGrid(mapData, mapDimensions, currX, currY+1)){
             mapData[currX][currY] = 0;
+            if(mapData[currX][currY+1] == 4) {
+                activateTrapdoor(mapData, mapDimensions);
+            }
             mapData[currX][currY+1] = 5;
         }
         break;
@@ -51,7 +64,7 @@ int isValidGrid(int** mapData, int* mapDimensions, int x, int y){
         isValid = 0;
     }
     /* not empty space */
-    else if(mapData[x][y] != 0){
+    else if(mapData[x][y] != 0 && mapData[x][y] != 4){
         isValid = 0;
     }
     return isValid;

@@ -1,6 +1,6 @@
 EXEC = escape
 CC = gcc
-OBJ = main.o fileIO.o interface.o colour.o terminal.o input.o movement.o
+OBJ = main.o fileIO.o interface.o colour.o terminal.o input.o movement.o trapdoor.c
 FLAGS = -Wall -Werror -pedantic -ansi
 
 ${EXEC}: ${OBJ}
@@ -20,6 +20,8 @@ input.o: input.c
 	${CC} ${FLAGS} input.c -c
 movement.o: movement.c
 	${CC} ${FLAGS} movement.c -c
+trapdoor.o: trapdoor.c
+	${CC} ${FLAGS} trapdoor.c -c
 
 test: ${EXEC}
 	./${EXEC} map.txt
