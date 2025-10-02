@@ -1,6 +1,7 @@
 #include "fileIO.h"
 #include "interface.h"
 #include "input.h"
+#include "movement.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,13 +22,15 @@ int main(int argc, char* argv[]){
 
         processMapFile(mapName, &mapData, &mapDimensions);
         
+        system("clear");
         displayMap(mapData, mapDimensions);
 
         while(!stop){
             ch = getInput();
             system("clear");
+            movePlayer(mapData, mapDimensions, ch);
             displayMap(mapData, mapDimensions);
-            printf("You just entered: %c\n", ch);
+            
         }
 
         freeMapData(&mapData, &mapDimensions);
