@@ -1,6 +1,6 @@
 EXEC = escape
 CC = gcc
-OBJ = main.o fileIO.o interface.o
+OBJ = main.o fileIO.o interface.o colour.o terminal.o
 FLAGS = -Wall -Werror -pedantic -ansi
 
 ${EXEC}: ${OBJ}
@@ -12,6 +12,10 @@ fileIO.o: fileIO.c
 	${CC} ${FLAGS} fileIO.c -c
 interace.o: interface.c
 	${CC} ${FLAGS} interface.c -c
+colour.o: colour.c
+	${CC} ${FLAGS} colour.c -c
+terminal.o: terminal.c
+	${CC} ${FLAGS} terminal.c -c
 
 test: ${EXEC}
 	./${EXEC} map.txt
@@ -19,3 +23,7 @@ test: ${EXEC}
 clean:
 	rm -f *.o ${EXEC}
 
+leaksOn:
+	export MallocStackLogging=1
+leaksOff:
+	export MallocStackLogging=0
