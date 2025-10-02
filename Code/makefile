@@ -10,6 +10,7 @@ main.o: main.c
 fileIO.o: fileIO.c
 	${CC} ${FLAGS} fileIO.c -c
 
-
+test: ${EXEC}
+	./${EXEC} map.txt
 
 

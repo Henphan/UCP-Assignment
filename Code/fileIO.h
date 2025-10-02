@@ -1,6 +1,7 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
-void processMapFile(char* mapName,int** mapData);
+int* getMapDimension(char* mapName, int* dimensions);
+void processMapFile(char* mapName,int*** mapData, int row, int col);
 
 #endif
