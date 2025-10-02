@@ -31,3 +31,12 @@ void processMapFile(char* mapName,int*** mapData, int** dimensions){
         printf("The file %s does not exist.\n", mapName);
     }
 }
+
+void freeMapData(int*** mapData, int** dimensions, int row){
+    int i;
+    for(i = 0; i < row; i++){
+        free((*mapData)[i]);
+    }
+    free(mapData);
+    free(dimensions);
+}

@@ -27,6 +27,7 @@ int main(int argc, char* argv[]){
             }
             printf("\n");
         }
+        freeMapData(&mapData, &mapDimensions, row);
     }
     return 1;
 }
