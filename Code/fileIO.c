@@ -32,11 +32,11 @@ void processMapFile(char* mapName,int*** mapData, int** dimensions){
     }
 }
 
-void freeMapData(int*** mapData, int** dimensions, int row){
+void freeMapData(int*** mapData, int** dimensions){
     int i;
-    for(i = 0; i < row; i++){
+    for(i = 0; i < (*dimensions)[0]; i++){
         free((*mapData)[i]);
     }
-    free(mapData);
-    free(dimensions);
+    free(*mapData);
+    free(*dimensions);
 }
